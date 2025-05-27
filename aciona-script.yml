@@ -1,0 +1,13 @@
+- name: Acionar script Python via webhook Flask com nome e telefone
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Enviar requisição POST com nome e telefone
+      ansible.builtin.uri:
+        url: http://192.168.100.45:8003/blacklist
+        method: POST
+        body_format: json
+        body:
+          nome: "{{ nome }}"
+          telefone: "{{ telefone }}"
+        status_code: 200
